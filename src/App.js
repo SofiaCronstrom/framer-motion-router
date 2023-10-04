@@ -1,5 +1,8 @@
 import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
 import "./App.css"
+import {motion, AnimatePresence} from "framer-motion";
+
+
 function Home() {
   return (
     <div
@@ -15,6 +18,9 @@ function Header() {
     <div className="header">
       <span>Header Component</span>
       <ul>
+      <NavLink to="/">Home</NavLink>
+      <NavLink to="/about">About</NavLink>
+      <NavLink to="/contact">Contact</NavLink>
       </ul>
     </div>
   );
@@ -44,12 +50,14 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <AnimatePresence>
      <Header/>
      <Routes>
      <Route path="/" element={<Home/>}></Route>
      <Route path="/about" element={<About/>}></Route>
      <Route path="/contact" element={<Contact/>}></Route>
      </Routes>
+     </AnimatePresence>
      </BrowserRouter>
     </div>
   );
