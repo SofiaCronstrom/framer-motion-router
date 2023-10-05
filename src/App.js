@@ -1,4 +1,4 @@
-import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
+import { BrowserRouter, NavLink, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css"
 import {motion, AnimatePresence} from "framer-motion";
 
@@ -46,18 +46,31 @@ function Contact() {
   );
 }
 
+function LocationProvider({children}){
+return <AnimatePresence>{children}</AnimatePresence>
+}
+
+function RoutesWithAnimation(){
+  const location = useLocation();
+  console.log(location);
+
+  return (
+    <Routes location={location} key={location.key}>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+    </Routes>
+  );
+}
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <AnimatePresence>
      <Header/>
-     <Routes>
-     <Route path="/" element={<Home/>}></Route>
-     <Route path="/about" element={<About/>}></Route>
-     <Route path="/contact" element={<Contact/>}></Route>
-     </Routes>
-     </AnimatePresence>
+     <LocationProvider>
+          <RoutesWithAnimation />
+        </LocationProvider>
      </BrowserRouter>
     </div>
   );
