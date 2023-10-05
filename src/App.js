@@ -2,15 +2,25 @@ import { BrowserRouter, NavLink, Route, Routes, useLocation } from "react-router
 import "./App.css"
 import {motion, AnimatePresence} from "framer-motion";
 
-
+const routeVariants = {
+  initial: {
+    y: "100vh"
+  },
+  final: {
+    y: "0vh"
+  }
+}
 function Home() {
   return (
-    <div
-      className="home component"
-    >
-     <h1>  Home Component </h1>
-    </div>
-  );
+  <motion.div
+  variants={routeVariants}
+  initial="initial"
+  animate="final"
+  className="home component" 
+  > 
+  <h1>  Home Component </h1>
+  </motion.div>
+  )
 }
 
 function Header() {
@@ -28,22 +38,28 @@ function Header() {
 
 function About() {
   return (
-    <div
+  <motion.div 
+      variants={routeVariants}
+      initial="initial"
+      animate="final"
       className="about component"
-    >
-      <h1> About Component </h1>
-    </div>
-  );
+  > 
+  <h1>  About Component </h1>
+  </motion.div>
+  )
 }
 
 function Contact() {
   return (
-    <div
-      className="contact component"
-    >
-      <h1> Contact Component </h1>
-    </div>
-  );
+  <motion.div
+  variants={routeVariants}
+  initial="initial"
+  animate="final"
+  className="contact component"
+   > 
+   <h1>  Contact Component </h1>
+   </motion.div>
+  )
 }
 
 function LocationProvider({children}){
